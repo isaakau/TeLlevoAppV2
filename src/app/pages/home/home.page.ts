@@ -14,4 +14,10 @@ export class HomePage {
     let direccion=event.detail.value
     this.router.navigate(['home/'+direccion])
   }
+
+  ngOnInit() {
+    this.router.navigate(['home/viajar'])
+  }
 }
+
+
