@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ViajeService } from 'src/app/services/viaje.service';
 
 @Component({
   selector: 'app-viajar',
@@ -6,9 +7,24 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./viajar.component.scss'],
 })
 export class ViajarComponent implements OnInit {
-
-  constructor() { }
+  Trips:any;
+  constructor(private api: ViajeService) { }
 
   ngOnInit() {}
 
+  ionViewWillEnter(){
+    this.getViajes()
+  }
+
+  getViajes(){
+    this.api.getViajes().subscribe(
+      (dato)=>{
+        console.log('Lista viajes');
+        console.log(dato);
+
+        this.Trips=dato;
+      }, (error)=>{
+        console.log(error);
+      });
+  }
 }

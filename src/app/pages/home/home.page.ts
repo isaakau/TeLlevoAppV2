@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { ViajeService } from 'src/app/services/viaje.service';
 
 @Component({
   selector: 'app-home',
@@ -7,8 +8,12 @@ import { Router } from '@angular/router';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
+  active: string;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router,
+              private api: ViajeService) {
+    this.active = "viajar"
+  }
 
   segmentChanged(event: any){
     let direccion=event.detail.value
@@ -17,6 +22,11 @@ export class HomePage {
 
   ngOnInit() {
     this.router.navigate(['home/viajar'])
+    
+  }
+
+  ionViewWillEnter() {
+    this.active = "viajar"
   }
 }
 

@@ -1,0 +1,50 @@
+{
+    "Users": [{
+            "id": "1",
+            "user": "isa.moreno",
+            "password": "isa123",
+            "fullName": "Isabella Moreno",
+            "email": "isa.moreno@duocuc.cl",
+            "phone": "12345678",
+            "isActive": "0",
+            "role": "C"
+        },
+        {
+            "id": "2",
+            "user": "pa.carvajall",
+            "password": "pa123",
+            "fullName": "Patricia Carvajal",
+            "email": "pa.carvajall@duocuc.cl",
+            "phone": "987654321",
+            "isActive": "0",
+            "role": "C"
+        },
+        {
+            "id": "3",
+            "user": "fe.santamaria",
+            "password": "fe123",
+            "fullName": "Felipe Santamaría",
+            "email": "fe.santamaria@duocuc.cl",
+            "phone": "56781234",
+            "isActive": "0",
+            "role": "V"
+        },
+        {
+            "id": "4",
+            "user": "ja.aravena",
+            "password": "ja123",
+            "fullName": "Jaime Aravena",
+            "email": "ja.aravena@duocuc.cl",
+            "phone": "98761234",
+            "isActive": "0",
+            "role": "V"
+        }
+    ],
+    "Trips": [{
+        "id": "1",
+        "destination": "Los Carrera 972, Quilpué",
+        "hour": "22:00",
+        "date": "2021-11-21",
+        "cost": "1000"
+    }]
+}

@@ -6,6 +6,10 @@ import { HomePage } from './home.page';
 
 import { HomePageRoutingModule } from './home-routing.module';
 
+import { ViajarComponent } from 'src/app/components/viajar/viajar.component';
+import { MiCuentaComponent } from 'src/app/components/mi-cuenta/mi-cuenta.component';
+import { HistorialViajesComponent } from 'src/app/components/historial-viajes/historial-viajes.component';
+
 
 @NgModule({
   imports: [
@@ -14,6 +18,6 @@ import { HomePageRoutingModule } from './home-routing.module';
     IonicModule,
     HomePageRoutingModule
   ],
-  declarations: [HomePage]
+  declarations: [HomePage, ViajarComponent, MiCuentaComponent, HistorialViajesComponent]
 })
 export class HomePageModule {}

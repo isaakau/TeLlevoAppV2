@@ -1,4 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { AnimationController } from '@ionic/angular';
 
 @Component({
@@ -8,7 +9,8 @@ import { AnimationController } from '@ionic/angular';
 })
 export class ErrorPage implements OnInit {
   @ViewChild('animar',{read: ElementRef, static:true}) animar:ElementRef;
-  constructor(private animationCtrl:AnimationController) { }
+  constructor(private animationCtrl:AnimationController,
+              private router: Router) { }
 
   ngOnInit() {
   }
@@ -25,7 +27,9 @@ export class ErrorPage implements OnInit {
   heart.play()
   }
   
-
+  volver() {
+    this.router.navigate(['/home'])
+  }
 
 
 

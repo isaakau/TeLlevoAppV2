@@ -10,7 +10,7 @@
 
 <ion-footer style="background:rgb(255, 255, 255);" class="font-monR" mode="md">
     <!--Se incluye el footer para implementar los segments al final de la pantalla, de acuerdo a como se utilizan actualmente-->
-    <ion-segment (ionChange)="segmentChanged($event)">
+    <ion-segment [(ngModel)]="active" (ionChange)="segmentChanged($event)">
         <ion-segment-button value="micuenta">
             <ion-icon name="person"></ion-icon>
             <ion-label class="font-segment">Mi cuenta</ion-label>
