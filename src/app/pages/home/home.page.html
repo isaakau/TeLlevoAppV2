@@ -8,20 +8,20 @@
     <ion-router-outlet></ion-router-outlet>
 </ion-content>
 
-<ion-footer style="background:rgb(255, 255, 255);" mode="md">
+<ion-footer style="background:rgb(255, 255, 255);" class="font-monR" mode="md">
     <!--Se incluye el footer para implementar los segments al final de la pantalla, de acuerdo a como se utilizan actualmente-->
     <ion-segment (ionChange)="segmentChanged($event)">
         <ion-segment-button value="micuenta">
             <ion-icon name="person"></ion-icon>
             <ion-label class="font-segment">Mi cuenta</ion-label>
         </ion-segment-button>
-        <ion-segment-button value="llevar">
-            <ion-icon name="person-add"></ion-icon>
-            <ion-label class="font-segment">Llevar gente</ion-label>
-        </ion-segment-button>
         <ion-segment-button value="viajar">
             <ion-icon name="car-sport"></ion-icon>
             <ion-label class="font-segment">Viajar</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="misviajes">
+            <ion-icon name="newspaper-outline"></ion-icon>
+            <ion-label class="font-segment">Mis viajes</ion-label>
         </ion-segment-button>
     </ion-segment>
 </ion-footer>
