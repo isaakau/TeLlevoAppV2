@@ -16,12 +16,24 @@ export class ViajeService {
     apiURL = 'http://192.168.56.1:3000';
   constructor(private http:HttpClient) { }
 
+    //Obtener todos los viajes
     getViajes():Observable<any>{
       return this.http.get(this.apiURL+'/Trips').pipe(
         retry(3)
       );
     }
 
+    //Obtener un viaje
+    getViaje(id):Observable<any>{
+      return this.http.get(this.apiURL+'/Trips/'+id).pipe(
+        retry(3));
+    }
+
+    //Crear viaje
+    createViaje(id):Observable<any>{ 
+      return this.http.post(this.apiURL+'/Trips/',id,this.httpOptions).pipe( 
+        retry(3)); 
+      }
 
 }
 

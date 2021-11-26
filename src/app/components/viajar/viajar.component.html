@@ -1,4 +1,4 @@
-<ion-content [fullscreen]="true">
+<ion-content mode="md" [fullscreen]="true">
 
     <ion-toolbar class="ion-text-center" color="primary">
         <ion-title class="font-monSB" mode="md" style="color: #FFFFFF;">Viajar</ion-title>
@@ -23,10 +23,10 @@
     <ion-card>
         <ion-card-content>
             <div>
-                <p class="font-monR">Viajes disponibles </p>
+                <p class="font-monR">Viajes disponibles</p>
                 <ion-item>
-                    <ion-select placeholder="Seleccione viaje" [(ngModel)]="Trips">
-                        <ion-select-option *ngFor="let t of Trips" [value]="t.id">{{t.hour}}hrs - ${{t.cost}}</ion-select-option>
+                    <ion-select class="font-monR" cancelText="Cerrar" interface="action-sheet" placeholder="Seleccione viaje" [(ngModel)]="Trips">
+                        <ion-select-option class="font-monR" *ngFor="let t of Trips" [value]="t.id">{{t.destination}} - {{t.hour}}hrs - Costo del viaje: ${{t.cost}}</ion-select-option>
                     </ion-select>
                 </ion-item>
             </div>
