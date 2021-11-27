@@ -83,13 +83,18 @@ export class LoginPage implements OnInit {
     }
   }
 
-async mostrarToast() {
-  await this.toast.create({
-    cssClass: 'font-monR-blanca',
-    message: 'Tu contraseña fue enviada a tu correo',
-    duration: 3000,
-    position: 'bottom'
-  }).then(res => res.present())
-} 
+  async mostrarToast() {
+    await this.toast.create({
+      cssClass: 'font-monR-blanca',
+      message: 'Tu contraseña fue enviada a tu correo',
+      duration: 3000,
+      position: 'bottom'
+    }).then(res => res.present())
+  } 
+
+  getUsuario(){
+    
+  }
+
 
 }
