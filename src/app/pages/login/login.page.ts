@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController, ToastController } from '@ionic/angular';
 import { UsuarioService } from 'src/app/services/usuario.service';
-//import { Storage } from '@ionic/storage';
+import { Storage } from '@ionic/storage-angular';
 
 @Component({
   selector: 'app-login',
@@ -26,11 +26,12 @@ export class LoginPage implements OnInit {
   constructor(public toast:ToastController,
               public alertController:AlertController,
               private api: UsuarioService,
-              //private storage: Storage
+              private storage: Storage
               ) { }
 
-  ngOnInit() {
+  async ngOnInit() {
     this.getUsuarios();
+    await this.storage.create();
   }
 
   ionViewWillEnter() {
@@ -146,13 +147,12 @@ export class LoginPage implements OnInit {
 
   autenticar(){
     for (let i = 0; i < this.usuarios.length; i++) {
-      //const element = this.usuarios[i];
       if(this.usuario.user===this.usuarios[i].user && 
         this.usuario.password===this.usuarios[i].password){
-        // this.storage.set('username', this.usuario.user)
-        // this.storage.set('password', this.usuario.password)
-        // this.storage.set('fullname', this.usuarios[i].fullname)
-        // this.storage.set('role', this.usuarios[i].role)
+        this.storage.set('username', this.usuario.user)
+        this.storage.set('password', this.usuario.password)
+        this.storage.set('fullname', this.usuarios[i].fullname)
+        this.storage.set('role', this.usuarios[i].role)
         return
       } else {
         this.toast.create({
