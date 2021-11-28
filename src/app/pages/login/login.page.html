@@ -12,14 +12,14 @@
         <ion-card-content>
             <ion-item>
                 <ion-label class="font-monR" position="floating">Usuario</ion-label>
-                <ion-input type="text"></ion-input>
+                <ion-input type="text" [(ngModel)]="usuario.user"></ion-input>
             </ion-item>
             <ion-item>
                 <ion-label class="font-monR" position="floating">Contraseña</ion-label>
-                <ion-input type="password"></ion-input>
+                <ion-input type="password" [(ngModel)]="usuario.password"></ion-input>
             </ion-item>
             <div style="margin-top: 2em;">
-                <ion-button class="font-monR" color="secondary" type="submit" mode="md" expand="block">Ingresar</ion-button>
+                <ion-button class="font-monR" color="secondary" type="submit" mode="md" expand="block" (click)="validarCredenciales()">Ingresar</ion-button>
             </div>
         </ion-card-content>
     </ion-card>

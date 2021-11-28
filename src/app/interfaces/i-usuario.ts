@@ -1,4 +1,6 @@
 export interface IUsuario {
     username: string,
-    password: string
+    password: string,
+    fullname: string,
+    role: string
 }

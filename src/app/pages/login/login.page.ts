@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController, ToastController } from '@ionic/angular';
+import { UsuarioService } from 'src/app/services/usuario.service';
+//import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'app-login',
@@ -8,11 +10,31 @@ import { AlertController, ToastController } from '@ionic/angular';
 })
 export class LoginPage implements OnInit {
 
+  usuario = {
+    id: null,
+    user: '',
+    password: '',
+    fullname: '',
+    phone: '',
+    email: '',
+    isActive: '',
+    role: ''
+  }
+
+  usuarios: any;
+
   constructor(public toast:ToastController,
-    public alertController:AlertController
+              public alertController:AlertController,
+              private api: UsuarioService,
+              //private storage: Storage
               ) { }
 
   ngOnInit() {
+    this.getUsuarios();
+  }
+
+  ionViewWillEnter() {
+    this.getUsuarios();
   }
 
   //aquí se crea el componente Alert que se utilizará para recuperar la contraseña, consiste en una ventana emergente que se superpone al login
@@ -73,12 +95,10 @@ export class LoginPage implements OnInit {
     if(user.length >=3){
       return {
         isValid: true,
-        message: ''
       };
     } else {
         return {
           isValid: false,
-          message: 'El nombre de usuario no es válido.'
         }
     }
   }
@@ -92,9 +112,60 @@ export class LoginPage implements OnInit {
     }).then(res => res.present())
   } 
 
-  getUsuario(){
-    
+  getUsuarios(){
+    //recorrer el json, buscando el usuario y la password para compararlos con los ingresados
+    this.api.getUsuarios().subscribe(
+      (dato)=>{
+        this.usuarios = dato;
+        console.log(this.usuarios);
+      }
+    )
   }
 
+  validarCredenciales(){
+    if(this.usuario.user.length >=3){
+      if(this.usuario.password.length >=3){
+        this.autenticar()
+      } else {
+        this.toast.create({
+          cssClass: 'font-monR mensaje-error',
+          message: 'La contraseña debe tener al menos 3 caracteres',
+          duration: 2500,
+          position: 'middle'
+        }).then(res => res.present())
+      }  
+    } else {
+      this.toast.create({
+        cssClass: 'font-monR mensaje-error',
+        message: 'El nombre de usuario debe tener al menos 3 caracteres',
+        duration: 2500,
+        position: 'middle'
+      }).then(res => res.present())
+    }
+  }
+
+  autenticar(){
+    for (let i = 0; i < this.usuarios.length; i++) {
+      //const element = this.usuarios[i];
+      if(this.usuario.user===this.usuarios[i].user && 
+        this.usuario.password===this.usuarios[i].password){
+        // this.storage.set('username', this.usuario.user)
+        // this.storage.set('password', this.usuario.password)
+        // this.storage.set('fullname', this.usuarios[i].fullname)
+        // this.storage.set('role', this.usuarios[i].role)
+        return
+      } else {
+        this.toast.create({
+          cssClass: 'font-monR mensaje-error',
+          message: 'Las credenciales no son válidas',
+          duration: 2500,
+          position: 'middle'
+        }) .then(res => res.present())
+
+        
+      }
+      
+    }
+  }
 
 }

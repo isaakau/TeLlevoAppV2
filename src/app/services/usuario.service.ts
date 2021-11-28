@@ -18,9 +18,15 @@ export class UsuarioService {
   constructor(private http:HttpClient) { }
 
   //Obtener un usuario
-  getUsuario(user):Observable<any>{
-    return this.http.get(this.apiURL+'/Users/'+user).pipe(
+  getUsuario(id):Observable<any>{
+    return this.http.get(this.apiURL+'/Users/'+id).pipe(
       retry(3));
   }
 
+  //Obtener todos los viajes
+  getUsuarios():Observable<any>{
+    return this.http.get(this.apiURL+'/Users').pipe(
+      retry(3)
+    );
+  }
 }
