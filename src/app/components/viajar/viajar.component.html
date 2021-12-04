@@ -13,9 +13,6 @@
             <small class="font-monR">{{fullname}}</small>
             <!-- Aquí se obtiene el nombre de usuario ingresado en el login, que se guardó previamente en el storage para mostrarlo por pantalla -->
         </ion-card-header>
-        <ion-card-content class="ion-text-center font-monR">
-
-        </ion-card-content>
     </ion-card>
 
     <ion-card *ngIf="role=='V'">
@@ -42,7 +39,16 @@
         <div>
             <p class="font-monR">Crear un viaje</p>
             <ion-item>
-
+                <ion-label class="font-monR" position="floating">Destino</ion-label>
+                <ion-input type="text" [(ngModel)]="Trip.destination"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label class="font-monR" position="floating">Hora</ion-label>
+                <ion-input type="text" [(ngModel)]="Trip.hour"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label class="font-monR" position="floating">Precio</ion-label>
+                <ion-input type="text" [(ngModel)]="Trip.cost"></ion-input>
             </ion-item>
         </div>
 
