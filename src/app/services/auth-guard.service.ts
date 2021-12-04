@@ -12,7 +12,7 @@ canActivate(route: ActivatedRouteSnapshot): boolean {
     console.log(route);
 
     let authInfo = {
-      authenticated: false
+      authenticated: true
     };
     
     if (!authInfo.authenticated) {
