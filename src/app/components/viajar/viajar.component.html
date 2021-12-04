@@ -14,13 +14,11 @@
             <!-- Aquí se obtiene el nombre de usuario ingresado en el login, que se guardó previamente en el storage para mostrarlo por pantalla -->
         </ion-card-header>
         <ion-card-content class="ion-text-center font-monR">
-            <!-- llamar información del json para mostrar -->
-            <ion-card-title style="font-size: 0.9em; padding-bottom: 2em;">Viajar o llevar?</ion-card-title>
 
         </ion-card-content>
     </ion-card>
 
-    <ion-card>
+    <ion-card *ngIf="role=='V'">
         <ion-card-content>
             <div>
                 <p class="font-monR">Viajes disponibles</p>
@@ -31,10 +29,23 @@
                 </ion-item>
             </div>
         </ion-card-content>
+        <ion-card-footer>
+            <div class="ion-text-center">
+                <ion-button class="font-monR ion-text-center" color="secondary" style="margin-bottom: 1em;">Comenzar Viaje</ion-button>
+            </div>
+        </ion-card-footer>
     </ion-card>
 
-    <div class="ion-text-center">
-        <ion-button class="font-monR ion-text-center" color="secondary" style="margin-bottom: 1em;">Comenzar Viaje</ion-button>
-    </div>
+
+
+    <ion-card *ngIf="role=='C'">
+        <div>
+            <p class="font-monR">Crear un viaje</p>
+            <ion-item>
+
+            </ion-item>
+        </div>
+
+    </ion-card>
 
 </ion-content>

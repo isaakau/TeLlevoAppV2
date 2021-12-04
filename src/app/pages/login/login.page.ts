@@ -153,9 +153,8 @@ export class LoginPage implements OnInit {
     //este ciclo for recorre el array de usuarios que se carga con los datos del json
     for (let i = 0; i < this.usuarios.length; i++) {
       //aquí se compara que el usuario y la password sean iguales a las del json
-      if(this.usuario.user===this.usuarios[i].user && 
+      if(this.usuario.user===this.usuarios[i].user && this.usuario.password===this.usuarios[i].password){
         //aquí se guarda toda la información necesaria en el local storage, utilizando el servicio creado para ello
-        this.usuario.password===this.usuarios[i].password)
         this.storage.set('username', this.usuario.user)
         this.storage.set('password', this.usuario.password)
         this.storage.set('fullname', this.usuarios[i].fullname)
@@ -168,9 +167,10 @@ export class LoginPage implements OnInit {
         //este boolean se utiliza para la lógica del alert de error en caso de que no se pueda validar al usuario
         this.encontrado=true
         return
+      }
     }
     //este alert se muestra cuando el for termina de buscar y no encuentra el usuario
-    if(this.encontrado==false)
+    if(this.encontrado==false){
       this.toast.create({
         cssClass: 'font-monR mensaje-error',
         message: 'Las credenciales no son válidas',
@@ -178,6 +178,6 @@ export class LoginPage implements OnInit {
         position: 'middle'
       }) .then(res => res.present())
 
+    }
   }
-
 }
