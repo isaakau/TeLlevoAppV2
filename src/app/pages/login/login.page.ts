@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AlertController, ToastController } from '@ionic/angular';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { StorageService } from 'src/app/services/bd.service';
-import { Router } from '@angular/router';
+import { ActivatedRouteSnapshot, Router } from '@angular/router';
+import { AuthGuardService } from 'src/app/services/auth-guard.service';
 
 @Component({
   selector: 'app-login',
@@ -24,13 +25,15 @@ export class LoginPage implements OnInit {
   }
 
   usuarios: any; //este será el arreglo que refleje la información del json
-  encontrado: boolean; //este boolean se utiliza en la autenticación
+  encontrado = false; //este boolean se utiliza en la autenticación
+  autenticado = false;
 
   constructor(public toast:ToastController,
               public alertController:AlertController,
               private api: UsuarioService,
               private storage: StorageService,
-              private router: Router
+              private router: Router,
+              private guard: AuthGuardService
               ) { }
 
   ngOnInit() {
@@ -39,6 +42,8 @@ export class LoginPage implements OnInit {
 
   ionViewWillEnter() {
     this.getUsuarios();
+    //este if evalua si al entrar al login hay datos en el local storage
+    //de haber datos, los va a borrar
     if(this.storage.get("username")!== null){
       this.storage.clear;
     }
@@ -169,7 +174,8 @@ export class LoginPage implements OnInit {
         this.router.navigate(['/home'])
         //este boolean se utiliza para la lógica del alert de error en caso de que no se pueda validar al usuario
         this.encontrado=true
-        return
+        this.autenticado=true
+        return this.autenticado;
       }
     }
     //este alert se muestra cuando el for termina de buscar y no encuentra el usuario
@@ -183,4 +189,5 @@ export class LoginPage implements OnInit {
 
     }
   }
+
 }

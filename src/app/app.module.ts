@@ -9,6 +9,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 
 import { IonicStorageModule } from '@ionic/storage-angular';
+import { AuthGuardService } from './services/auth-guard.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -17,9 +18,9 @@ import { IonicStorageModule } from '@ionic/storage-angular';
             IonicModule.forRoot(), 
             AppRoutingModule, 
             HttpClientModule, 
-            IonicStorageModule.forRoot()
+            IonicStorageModule.forRoot(),
           ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  providers: [AuthGuardService, { provide: RouteReuseStrategy, useClass: IonicRouteStrategy, }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
