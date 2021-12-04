@@ -39,6 +39,9 @@ export class LoginPage implements OnInit {
 
   ionViewWillEnter() {
     this.getUsuarios();
+    if(this.storage.get("username")!== null){
+      this.storage.clear;
+    }
   }
 
   //aquí se crea el componente Alert que se utilizará para recuperar la contraseña, consiste en una ventana emergente que se superpone al login
