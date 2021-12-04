@@ -1,12 +1,23 @@
 <ion-content [fullscreen]="true">
+    <ion-toolbar class="ion-text-center" color="primary">
+        <ion-title class="font-monSB" mode="md" style="color: #FFFFFF;">Mi Cuenta</ion-title>
+    </ion-toolbar>
     <ion-card>
         <ion-card-header class="ion-text-center">
-            <div>
-                <ion-card-title class="font-monR">Bienvenid@!</ion-card-title>
-            </div>
+
         </ion-card-header>
         <ion-card-content class="ion-text-center font-monR">
-
+            <small>Usuario: {{username}}</small>
+            <br>
+            <small>Nombre: {{fullname}}</small>
+            <br>
+            <small>email: {{email}}</small>
+            <br>
+            <small>Teléfono: {{phone}}</small>
+            <br>
+            <!--aquí mostramos el tipo de cuenta dependiendo del rol-->
+            <small *ngIf="role=='C'">Tipo de cuenta: Conductor</small>
+            <small *ngIf="role=='V'">Tipo de cuenta: Pasajero</small>
         </ion-card-content>
     </ion-card>
     <div class="ion-text-center">

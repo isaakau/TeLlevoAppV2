@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController, ToastController } from '@ionic/angular';
 import { UsuarioService } from 'src/app/services/usuario.service';
-import { Storage } from '@ionic/storage-angular';
+import { StorageService } from 'src/app/services/bd.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -10,6 +11,7 @@ import { Storage } from '@ionic/storage-angular';
 })
 export class LoginPage implements OnInit {
 
+  //se declara la estructura de usuario
   usuario = {
     id: null,
     user: '',
@@ -21,17 +23,18 @@ export class LoginPage implements OnInit {
     role: ''
   }
 
-  usuarios: any;
+  usuarios: any; //este será el arreglo que refleje la información del json
+  encontrado: boolean; //este boolean se utiliza en la autenticación
 
   constructor(public toast:ToastController,
               public alertController:AlertController,
               private api: UsuarioService,
-              private storage: Storage
+              private storage: StorageService,
+              private router: Router
               ) { }
 
-  async ngOnInit() {
+  ngOnInit() {
     this.getUsuarios();
-    await this.storage.create();
   }
 
   ionViewWillEnter() {
@@ -122,7 +125,7 @@ export class LoginPage implements OnInit {
       }
     )
   }
-
+  //esta función nos permite validar que los campos usuario y password no esten vacíos y no tengan menos de 3 caracteres
   validarCredenciales(){
     if(this.usuario.user.length >=3){
       if(this.usuario.password.length >=3){
@@ -146,26 +149,35 @@ export class LoginPage implements OnInit {
   }
 
   autenticar(){
+    this.encontrado = false;
+    //este ciclo for recorre el array de usuarios que se carga con los datos del json
     for (let i = 0; i < this.usuarios.length; i++) {
+      //aquí se compara que el usuario y la password sean iguales a las del json
       if(this.usuario.user===this.usuarios[i].user && 
-        this.usuario.password===this.usuarios[i].password){
+        //aquí se guarda toda la información necesaria en el local storage, utilizando el servicio creado para ello
+        this.usuario.password===this.usuarios[i].password)
         this.storage.set('username', this.usuario.user)
         this.storage.set('password', this.usuario.password)
         this.storage.set('fullname', this.usuarios[i].fullname)
+        this.storage.set('email', this.usuarios[i].email)
+        this.storage.set('phone', this.usuarios[i].phone)
         this.storage.set('role', this.usuarios[i].role)
+        //falta cambiar el estado a activo en el json, o eliminar esa lógica
+        //luego de guardar la información, se redirecciona al home
+        this.router.navigate(['/home'])
+        //este boolean se utiliza para la lógica del alert de error en caso de que no se pueda validar al usuario
+        this.encontrado=true
         return
-      } else {
-        this.toast.create({
-          cssClass: 'font-monR mensaje-error',
-          message: 'Las credenciales no son válidas',
-          duration: 2500,
-          position: 'middle'
-        }) .then(res => res.present())
-
-        
-      }
-      
     }
+    //este alert se muestra cuando el for termina de buscar y no encuentra el usuario
+    if(this.encontrado==false)
+      this.toast.create({
+        cssClass: 'font-monR mensaje-error',
+        message: 'Las credenciales no son válidas',
+        duration: 2500,
+        position: 'middle'
+      }) .then(res => res.present())
+
   }
 
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { ViajeService } from 'src/app/services/viaje.service';
+import { StorageService } from 'src/app/services/bd.service';
 
 @Component({
   selector: 'app-viajar',
@@ -10,6 +11,8 @@ import { ViajeService } from 'src/app/services/viaje.service';
 export class ViajarComponent implements OnInit {
   Trips:any;
   cant: any;
+  role: string;
+  fullname: string;
 
   Trip = {
     id: null,
@@ -21,14 +24,19 @@ export class ViajarComponent implements OnInit {
   
 
   constructor(private api: ViajeService,
-              public alertController: AlertController) { }
+              public alertController: AlertController,
+              private storage: StorageService) { }
 
 
 
   ngOnInit() {}
 
-  ionViewWillEnter(){
+  async ionViewWillEnter(){
     this.getViajes()
+    this.fullname = await this.storage.get("fullname")
+    this.role = await this.storage.get('role')
+    console.log(this.fullname,"rol:", this.role);
+    
   }
 
   getViajes(){
@@ -36,8 +44,7 @@ export class ViajarComponent implements OnInit {
       (dato)=>{
         this.Trips = dato;
         this.cant = this.Trips.length;
-        console.log(this.Trips.id)
-      }, (error)=>{
+            }, (error)=>{
         console.log(error);
       });
   }
@@ -68,13 +75,14 @@ export class ViajarComponent implements OnInit {
     }
   }
 
-    async presentAlert(titulo: string) {
-      const alert = await this.alertController.create({
-        cssClass: 'my-custom-class',
-        header: titulo,
-        buttons: ['OK'],
-      });
-      await alert.present();
-    }
+  async presentAlert(titulo: string) {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: titulo,
+      buttons: ['OK'],
+    });
+    await alert.present();
+  }
+
 
 }
