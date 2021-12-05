@@ -169,6 +169,7 @@ export class LoginPage implements OnInit {
         this.storage.set('email', this.usuarios[i].email)
         this.storage.set('phone', this.usuarios[i].phone)
         this.storage.set('role', this.usuarios[i].role)
+        this.storage.set('auth', true)
         //falta cambiar el estado a activo en el json, o eliminar esa lógica
         //luego de guardar la información, se redirecciona al home
         this.router.navigate(['/home'])
