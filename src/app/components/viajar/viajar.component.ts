@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { ViajeService } from 'src/app/services/viaje.service';
 import { StorageService } from 'src/app/services/bd.service';
+import { Geolocation } from '@capacitor/geolocation';
+
+declare let google;
+
 
 @Component({
   selector: 'app-viajar',
@@ -21,15 +25,27 @@ export class ViajarComponent implements OnInit {
     date: '',
     cost: '',
   };
+
+  map = null;
+  newPosition: {
+    lat: any;
+    lng: any;
+  };
+
+
+  lat: any;
+  lng: any;
   
+
 
   constructor(private api: ViajeService,
               public alertController: AlertController,
-              private storage: StorageService) { }
+              private storage: StorageService) {}
 
 
-
-  ngOnInit() {}
+  ngOnInit() {
+    this.CurrentPosition()
+  }
 
   async ionViewWillEnter(){
     this.getViajes()
@@ -38,6 +54,16 @@ export class ViajarComponent implements OnInit {
     console.log(this.fullname,"rol:", this.role);
     
   }
+
+  // coordenadas de geolocation 
+  async CurrentPosition(){
+    const coordinates = await Geolocation.getCurrentPosition();
+    this.lat = coordinates.coords.latitude;
+    this.lng = coordinates.coords.longitude;
+    console.log('Current position:', coordinates);
+    //this.presentAlert2('Current position: ',coordinates.coords.latitude, coordinates.coords.longitude);
+  };
+
 
   getViajes(){
     this.api.getViajes().subscribe(
@@ -83,6 +109,39 @@ export class ViajarComponent implements OnInit {
     });
     await alert.present();
   }
+
+  async presentAlert2(titulo: string, message: any, message2:any) {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: titulo,
+      message: message +" "+ message2,
+      buttons: ['OK'],
+    });
+    await alert.present();
+  }
+
+  loadMap(lat: any, lng: any) {
+    // create a new map by passing HTMLElement
+    const mapEle: HTMLElement = document.getElementById('map');
+    // create map
+    const centrar = lat+', '+lng
+    this.map = new google.maps.Map(mapEle, {
+      center: centrar,
+      zoom: 12,
+      // disableDefaultUI: true,
+      zoomControl: true,
+      mapTypeControl: false,
+      scaleControl: false,
+      streetViewControl: false,
+      rotateControl: false,
+      fullscreenControl: true,
+    });
+  }
+  //   google.maps.event.addListenerOnce(this.map, 'idle', () => {
+  //     // this.renderMarkers();
+  //     mapEle.classList.add('show-map');
+  //   });
+  // }
 
 
 }
