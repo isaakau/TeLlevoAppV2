@@ -5,3 +5,6 @@ N
 Dependencias
 npm install -g json-server
 npm install @ionic/storage-angular
+npm install @capacitor/android
+npx cap add android
+npx cap open android
