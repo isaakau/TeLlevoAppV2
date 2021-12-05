@@ -44,15 +44,15 @@
             </ion-item>
             <ion-item>
                 <ion-label class="font-monR" position="floating">Hora</ion-label>
-                <ion-input type="text" [(ngModel)]="Trip.hour"></ion-input>
+                <ion-input type="time" [(ngModel)]="Trip.hour"></ion-input>
             </ion-item>
             <ion-item>
                 <ion-label class="font-monR" position="floating">Fecha</ion-label>
-                <ion-input type="text" [(ngModel)]="Trip.date"></ion-input>
+                <ion-input type="date" [(ngModel)]="Trip.date"></ion-input>
             </ion-item>
             <ion-item>
                 <ion-label class="font-monR" position="floating">Precio</ion-label>
-                <ion-input type="text" [(ngModel)]="Trip.cost"></ion-input>
+                <ion-input type="number" inputmode="numeric" [(ngModel)]="Trip.cost"></ion-input>
             </ion-item>
             <ion-button class="font-monR ion-text-center" color="secondary" style="margin-bottom: 1em;" (click)=createViaje()>Crear</ion-button>
         </div>
