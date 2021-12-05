@@ -10,11 +10,14 @@ export class AuthGuardService implements CanActivate {
   constructor(private router: Router,
               private storage: StorageService) {}
 
+  autenticado = this.storage.get("auth")
 canActivate(route: ActivatedRouteSnapshot): boolean {
     console.log(route);
-
+    console.log(this.autenticado);
+    
     let authInfo = {
-      authenticated: this.storage.get('auth')
+      authenticated: this.autenticado
+      
     };
     
     if (!authInfo.authenticated) {

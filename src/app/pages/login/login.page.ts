@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AlertController, ToastController } from '@ionic/angular';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { StorageService } from 'src/app/services/bd.service';
-import { ActivatedRouteSnapshot, Router } from '@angular/router';
-import { AuthGuardService } from 'src/app/services/auth-guard.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -27,27 +26,28 @@ export class LoginPage implements OnInit {
   usuarios: any; //este será el arreglo que refleje la información del json
   encontrado = false; //este boolean se utiliza en la autenticación
   autenticado = false;
+  userlength: any;
 
   constructor(public toast:ToastController,
               public alertController:AlertController,
               private api: UsuarioService,
               private storage: StorageService,
-              private router: Router,
-              private guard: AuthGuardService
+              private router: Router
               ) { }
 
-  ngOnInit() {
-    this.getUsuarios();
-  }
-
-  ionViewWillEnter() {
+  async ngOnInit() {
     this.getUsuarios();
     //este if evalua si al entrar al login hay datos en el local storage
     //de haber datos, los va a borrar
-    if(this.storage.get("username")!== null){
-      this.storage.clear;
+    if(await this.storage.get("username")!== ""){
+      this.storage.clear();
     }
   }
+
+  async ionViewWillEnter() {
+    this.getUsuarios();
+  }
+
 
   //aquí se crea el componente Alert que se utilizará para recuperar la contraseña, consiste en una ventana emergente que se superpone al login
   async presentAlert() {
@@ -170,13 +170,13 @@ export class LoginPage implements OnInit {
         this.storage.set('phone', this.usuarios[i].phone)
         this.storage.set('role', this.usuarios[i].role)
         this.storage.set('auth', true)
+        
         //falta cambiar el estado a activo en el json, o eliminar esa lógica
         //luego de guardar la información, se redirecciona al home
         this.router.navigate(['/home'])
         //este boolean se utiliza para la lógica del alert de error en caso de que no se pueda validar al usuario
         this.encontrado=true
-        this.autenticado=true
-        return this.autenticado;
+        return 
       }
     }
     //este alert se muestra cuando el for termina de buscar y no encuentra el usuario
