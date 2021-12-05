@@ -13,25 +13,25 @@ export class ViajeService {
       'Access-Control-Allow-Origin' : '*'}) }
 
       
-    apiURL = 'http://192.168.56.1:3000';
+    apiURL = 'https://raw.githubusercontent.com/isaakau/TeLlevoAppV2/main/trips.json';
   constructor(private http:HttpClient) { }
 
     //Obtener todos los viajes
     getViajes():Observable<any>{
-      return this.http.get(this.apiURL+'/Trips').pipe(
+      return this.http.get(this.apiURL).pipe(
         retry(3)
       );
     }
 
     //Obtener un viaje
     getViaje(id):Observable<any>{
-      return this.http.get(this.apiURL+'/Trips/'+id).pipe(
+      return this.http.get(this.apiURL+id).pipe(
         retry(3));
     }
 
     //Crear viaje
     createViaje(id):Observable<any>{ 
-      return this.http.post(this.apiURL+'/Trips/',id,this.httpOptions).pipe( 
+      return this.http.post(this.apiURL,id,this.httpOptions).pipe( 
         retry(3)); 
       }
 

@@ -14,18 +14,18 @@ export class UsuarioService {
     })
   }
 
-  apiURL = 'http://192.168.56.1:3000'
+  apiURL = 'https://raw.githubusercontent.com/isaakau/TeLlevoAppV2/main/users.json'
   constructor(private http:HttpClient) { }
 
   //Obtener un usuario
   getUsuario(id):Observable<any>{
-    return this.http.get(this.apiURL+'/Users/'+id).pipe(
+    return this.http.get(this.apiURL+id).pipe(
       retry(3));
   }
 
   //Obtener todos los viajes
   getUsuarios():Observable<any>{
-    return this.http.get(this.apiURL+'/Users').pipe(
+    return this.http.get(this.apiURL).pipe(
       retry(3)
     );
   }
