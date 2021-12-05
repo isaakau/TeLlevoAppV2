@@ -32,7 +32,7 @@ export class LoginPage implements OnInit {
               public alertController:AlertController,
               private api: UsuarioService,
               private storage: StorageService,
-              private router: Router
+              private router: Router,
               ) { }
 
   async ngOnInit() {
@@ -172,6 +172,8 @@ export class LoginPage implements OnInit {
         this.storage.set('phone', this.usuarios[i].phone)
         this.storage.set('role', this.usuarios[i].role)
         this.storage.set('auth', true)
+        this.storage.set('trip', "N")
+        this.storage.set('tripid', 0)
         //falta cambiar el estado a activo en el json, o eliminar esa lógica
         //luego de guardar la información, se redirecciona al home
         this.router.navigate(['/home'])

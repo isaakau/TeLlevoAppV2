@@ -5,5 +5,7 @@ export interface IUsuario {
     email: string,
     phone: number,
     role: string,
-    auth: boolean
+    auth: boolean,
+    trip: string,
+    tripid: number
 }

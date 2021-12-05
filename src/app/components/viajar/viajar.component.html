@@ -14,8 +14,9 @@
             <!-- Aquí se obtiene el nombre de usuario ingresado en el login, que se guardó previamente en el storage para mostrarlo por pantalla -->
         </ion-card-header>
     </ion-card>
-
-    <ion-card *ngIf="role=='V'">
+    <!--PASAJERO-->
+    <!--lo que ve un pasajero cuando no tiene viaje asignado-->
+    <ion-card *ngIf="role=='V' && trip=='N'">
         <ion-card-content>
             <div>
                 <p class="font-monR">Viajes disponibles</p>
@@ -33,9 +34,17 @@
         </ion-card-footer>
     </ion-card>
 
+    <!--Lo que ve el pasajero después de inscribirse en un viaje-->
+    <ion-card *ngIf="role=='C' && trip=='Y'">
+        <div>
+            <p class="fonr-monR">Tu viaje</p>
+            <p>{{actualtrip}}</p>
+        </div>
+    </ion-card>
 
-
-    <ion-card *ngIf="role=='C'">
+    <!--CONDUCTOR-->
+    <!--lo que ve un conductor cuando no tiene viaje asignado-->
+    <ion-card *ngIf="role=='C' && trip=='N'">
         <div>
             <p class="font-monR">Crear un viaje</p>
             <ion-item>
@@ -56,7 +65,13 @@
             </ion-item>
             <ion-button class="font-monR ion-text-center" color="secondary" style="margin-bottom: 1em;" (click)=createViaje()>Crear</ion-button>
         </div>
-
+    </ion-card>
+    <!--lo que ve el conductor después de crear un viaje-->
+    <ion-card *ngIf="role=='C' && trip=='Y'">
+        <div>
+            <p class="fonr-monR">Tu viaje</p>
+            <p>{{actualtrip}}</p>
+        </div>
     </ion-card>
 
 </ion-content>

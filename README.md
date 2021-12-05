@@ -8,3 +8,6 @@ npm install @ionic/storage-angular
 npm install @capacitor/android
 npx cap add android
 npx cap open android
+
+Para enviar el email
+npm install nodemailer

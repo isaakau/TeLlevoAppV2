@@ -5,14 +5,27 @@
       "destination": "Los Carrera 972, Quilpué",
       "hour": "22:00",
       "date": "2021-11-21",
-      "cost": "1000"
+      "cost": 1000,
+      "driver": "isa.moreno"
     },
     {
       "id": 2,
       "destination": "las blablas",
       "hour": "22:36",
       "date": "2021-12-05",
-      "cost": 1233
+      "cost": 1233,
+      "driver": "pa.carvajall"
+    },
+    {
+      "id": 3,
+      "destination": "Los blables 123",
+      "hour": "20:50",
+      "date": "2021-12-06",
+      "cost": 1700,
+      "driver": {
+        "__zone_symbol__state": null,
+        "__zone_symbol__value": []
+      }
     }
   ]
 }

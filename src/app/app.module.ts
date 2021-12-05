@@ -19,7 +19,7 @@ import { AuthGuardService } from './services/auth-guard.service';
             AppRoutingModule, 
             HttpClientModule, 
             IonicStorageModule.forRoot(),
-          ],
+                      ],
   providers: [AuthGuardService, { provide: RouteReuseStrategy, useClass: IonicRouteStrategy, }],
   bootstrap: [AppComponent],
 })
