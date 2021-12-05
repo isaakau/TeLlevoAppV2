@@ -23,33 +23,47 @@ export class MapaPage implements OnInit {
     this.createMap();
   }
 
-    createMap() {
+  createMap() {
     const boundingRect = this.mapView.nativeElement.getBoundingClientRect() as DOMRect;
+ 
     CapacitorGoogleMaps.create({
       width: Math.round(boundingRect.width),
       height: Math.round(boundingRect.height),
       x: Math.round(boundingRect.x),
       y: Math.round(boundingRect.y),
-      zoom: 5,
-      latitude:-33.044179,
-      longitude: -71.438479  
+      zoom: 16,
+      latitude: -33.042418,
+      longitude: -71.436925 
     });
-  //   CapacitorGoogleMaps.addListener('onMapReady', async () => {
-  //     CapacitorGoogleMaps.setMapType({
-  //       type: "normal" // hybrid, satellite, terrain
-  //     });
-  //     this.showCurrentPosition();
-  //   });
+ 
+    CapacitorGoogleMaps.addListener('onMapReady', async () => {
+      CapacitorGoogleMaps.setMapType({
+        type: "normal" 
+      });
+      
+      this.showCurrentPosition();
+    });
   }
-
-  // // coordenadas de geolocation 
-  // async showCurrentPosition() {
-  //   // const coordinates = await Geolocation.getCurrentPosition();
-  //   // this.lat = coordinates.coords.latitude;
-  //   // this.lng = coordinates.coords.longitude;
-  //   // console.log('Current position:', coordinates);
-  //   // //this.presentAlert2('Current position: ',coordinates.coords.latitude, coordinates.coords.longitude);
-  // }
+ 
+  async showCurrentPosition() {
+    Geolocation.requestPermissions().then(async premission => {
+      const coordinates = await Geolocation.getCurrentPosition();
+        // Create our current location marker
+        CapacitorGoogleMaps.addMarker({
+          latitude: coordinates.coords.latitude,
+          longitude: coordinates.coords.longitude,
+          title: 'My castle of loneliness',
+          snippet: 'Come and find me!'
+        });
+              // Focus the camera
+        CapacitorGoogleMaps.setCamera({
+          latitude: coordinates.coords.latitude,
+          longitude: coordinates.coords.longitude,
+          zoom: 16,
+          bearing: 0
+        });
+      });
+  }
 
   volver() {
     this.router.navigate(['/home'])

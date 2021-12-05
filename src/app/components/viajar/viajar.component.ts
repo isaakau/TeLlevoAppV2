@@ -85,38 +85,6 @@ export class ViajarComponent{
     await alert.present();
   }
 
-  // async presentAlert2(titulo: string, message: any, message2:any) {
-  //   const alert = await this.alertController.create({
-  //     cssClass: 'my-custom-class',
-  //     header: titulo,
-  //     message: message +" "+ message2,
-  //     buttons: ['OK'],
-  //   });
-  //   await alert.present();
-  // }
-
-  // loadMap(lat: any, lng: any) {
-  //   // create a new map by passing HTMLElement
-  //   const mapEle: HTMLElement = document.getElementById('map');
-  //   // create map
-  //   const centrar = lat+', '+lng
-  //   this.map = new google.maps.Map(mapEle, {
-  //     center: centrar,
-  //     zoom: 12,
-  //     // disableDefaultUI: true,
-  //     zoomControl: true,
-  //     mapTypeControl: false,
-  //     scaleControl: false,
-  //     streetViewControl: false,
-  //     rotateControl: false,
-  //     fullscreenControl: true,
-  //   });
-  // }
-  //   google.maps.event.addListenerOnce(this.map, 'idle', () => {
-  //     // this.renderMarkers();
-  //     mapEle.classList.add('show-map');
-  //   });
-  // }
 
   irMapa() {
     this.router.navigate(['/mapa'])
