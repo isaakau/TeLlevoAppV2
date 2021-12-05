@@ -39,19 +39,19 @@
         <div>
             <p class="font-monR">Crear un viaje</p>
             <ion-item>
-                <ion-label class="font-monR" position="floating">Destino</ion-label>
+                <ion-label class="font-monR">Destino</ion-label>
                 <ion-input type="text" [(ngModel)]="Trip.destination"></ion-input>
             </ion-item>
             <ion-item>
-                <ion-label class="font-monR" position="floating">Hora</ion-label>
+                <ion-label class="font-monR">Hora</ion-label>
                 <ion-input type="time" [(ngModel)]="Trip.hour"></ion-input>
             </ion-item>
             <ion-item>
-                <ion-label class="font-monR" position="floating">Fecha</ion-label>
+                <ion-label class="font-monR">Fecha</ion-label>
                 <ion-input type="date" [(ngModel)]="Trip.date"></ion-input>
             </ion-item>
             <ion-item>
-                <ion-label class="font-monR" position="floating">Precio</ion-label>
+                <ion-label class="font-monR">Precio</ion-label>
                 <ion-input type="number" inputmode="numeric" [(ngModel)]="Trip.cost"></ion-input>
             </ion-item>
             <ion-button class="font-monR ion-text-center" color="secondary" style="margin-bottom: 1em;" (click)=createViaje()>Crear</ion-button>
