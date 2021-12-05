@@ -8,3 +8,5 @@ npm install @ionic/storage-angular
 npm install @capacitor/android
 npx cap add android
 npx cap open android
+ionic bulid --> para cambios
+npx cap copy 
