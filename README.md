@@ -20,4 +20,4 @@ ionic capacitor run android --livereload
 ***
 npm i @capacitor-community/capacitor-googlemaps-native
 ***
-ionic cap run android --livereload --external --source-map=false
+ionic cap run android --livereload --external --source-map

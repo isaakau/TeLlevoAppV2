@@ -21,6 +21,9 @@
         <ion-card-content>
             <div>
                 <p class="font-monR">Viajes disponibles</p>
+                <div>
+                    <ion-button class="font-monR ion-text-center" color="secondary" style="margin-bottom: 1em;" expand="full" (click)="irMapa()">Ver ubicación</ion-button>
+                </div>
                 <ion-item>
                     <ion-select class="font-monR" cancelText="Cerrar" interface="action-sheet" placeholder="Seleccione viaje" [(ngModel)]="Trips">
                         <ion-select-option class="font-monR" *ngFor="let t of Trips" [value]="t.id">{{t.destination}} - {{t.hour}}hrs - Costo del viaje: ${{t.cost}}</ion-select-option>
@@ -28,8 +31,6 @@
                 </ion-item>
             </div>
         </ion-card-content>
-        <!-- mapa -->
-        <div id="map" #map></div> 
         <ion-card-footer>
             <div class="ion-text-center">
                 <ion-button class="font-monR ion-text-center" color="secondary" style="margin-bottom: 1em;">Comenzar Viaje</ion-button>

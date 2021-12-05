@@ -2,8 +2,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { ViajeService } from 'src/app/services/viaje.service';
 import { StorageService } from 'src/app/services/bd.service';
-import { Geolocation } from '@capacitor/geolocation';
-import { CapacitorGoogleMaps } from '@capacitor-community/capacitor-googlemaps-native';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-viajar',
@@ -24,31 +23,14 @@ export class ViajarComponent{
     cost: '',
   };
 
-  map = null;
-  newPosition: {
-    lat: any;
-    lng: any;
-  };
-
-
-  lat: any;
-  lng: any;
-  
-
-
   constructor(private api: ViajeService,
               public alertController: AlertController,
-              private storage: StorageService) {}
+              private storage: StorageService,
+              private router: Router) {}
 
-  @ViewChild('map') mapView: ElementRef;
 
   ngOnInit() {
   }
-
-  ionViewDidEnter() {
-    this.createMap();
-  }
-
 
   async ionViewWillEnter(){
     this.getViajes()
@@ -57,33 +39,6 @@ export class ViajarComponent{
     console.log(this.fullname,"rol:", this.role);
     
   }
-
-  createMap() {
-    const boundingRect = this.mapView.nativeElement.getBoundingClientRect() as DOMRect;
-    CapacitorGoogleMaps.create({
-      width: Math.round(boundingRect.width),
-      height: Math.round(boundingRect.height),
-      x: Math.round(boundingRect.x),
-      y: Math.round(boundingRect.y),
-      zoom: 5
-    });
-    CapacitorGoogleMaps.addListener('onMapReady', async () => {
-      CapacitorGoogleMaps.setMapType({
-        type: "normal" // hybrid, satellite, terrain
-      });
-      this.showCurrentPosition();
-    });
-  }
-
-  // coordenadas de geolocation 
-  async showCurrentPosition() {
-    // const coordinates = await Geolocation.getCurrentPosition();
-    // this.lat = coordinates.coords.latitude;
-    // this.lng = coordinates.coords.longitude;
-    // console.log('Current position:', coordinates);
-    // //this.presentAlert2('Current position: ',coordinates.coords.latitude, coordinates.coords.longitude);
-  }
-
 
   getViajes(){
     this.api.getViajes().subscribe(
@@ -163,8 +118,8 @@ export class ViajarComponent{
   //   });
   // }
 
-
-  ionViewDidLeave() {
-    CapacitorGoogleMaps.close();
+  irMapa() {
+    this.router.navigate(['/mapa'])
   }
+
 }

@@ -14,8 +14,8 @@ export class LoginPage implements OnInit {
   //se declara la estructura de usuario
   usuario = {
     id: null,
-    user: '',
-    password: '',
+    user: 'ja.aravena',
+    password: 'ja123',
     fullname: '',
     phone: '',
     email: '',
