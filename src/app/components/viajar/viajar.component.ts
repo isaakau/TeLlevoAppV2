@@ -78,8 +78,6 @@ export class ViajarComponent{
       this.Trip.driver = await this.storage.get('username');
       this.api.createViaje(this.Trip).subscribe(
         () => {
-          //this.emailstring='mailto:'+this.Trip.driver+'@duocuc.cl?subject=Se%20ha%20creado%20un%20viaje&body=Se%20ha%20creado%20un%20viaje%20para%20el%20día%20'+this.Trip.date+'%20a%20las%20'+this.Trip.hour+'%20con%20destino%20a%20'+this.Trip.destination+'.%20Gracias%20por%20usar%20TeLlevoApp%20(❁´◡`❁)'
-          this.Trip.destination="";
           this.Trip.hour="";
           this.Trip.date="";
           this.Trip.cost=null;
@@ -109,11 +107,6 @@ export class ViajarComponent{
 
   irMapa() {
     this.router.navigate(['/mapa'])
-  }
-
-  async mailto() {
-    this.emaildelusuario = await this.storage.get('email')
-    return ("mailto:"+this.emaildelusuario+"?subject=hola&body=estoy%20probando%20variables%20"+this.fullname+"eso, bye xD")
   }
 
 

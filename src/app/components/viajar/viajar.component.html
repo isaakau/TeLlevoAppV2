@@ -62,13 +62,10 @@
                 <ion-button class="font-monR ion-text-center" color="secondary" style="margin-bottom: 1em; margin-left: 2em; margin-right: 2em;" expand="full" (click)="irMapa()">Ver ubicación actual</ion-button>
             </div>
             <div class="ion-text-center">
-                <ion-button class="font-monR ion-text-center" color="secondary" style="margin-bottom: 1em; margin-left: 2em; margin-right: 2em;" expand="full" (click)=createViaje()>Crear</ion-button>
+                <ion-button class="font-monR ion-text-center" color="secondary" style="margin-bottom: 1em; margin-left: 2em; margin-right: 2em;" expand="full" (click)=createViaje() href="mailto:isa.moreno@duocuc.cl?subject=Confirmación de viaje&body=Se ha creado un viaje. Gracias por usar TeLevoApp (❁´◡`❁)">Crear</ion-button>
             </div>
         </div>
 
-        <div class="ion-text-center">
-            <ion-button class="font-monR ion-text-center" color="secondary" style="margin-bottom: 1em; margin-left: 2em; margin-right: 2em;" expand="full" [href]="mailto()">Mandar email</ion-button>
-        </div>
         <!-- mapa -->
         <div id="map" #map></div>
 
