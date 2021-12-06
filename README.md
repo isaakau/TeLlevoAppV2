@@ -29,4 +29,7 @@ npm i @capacitor-community/capacitor-googlemaps-native
 <!-- deployment en telefono -->
 ionic cap run android --livereload --external --source-map
 ***
+<!-- para email -->
+npm install capacitor-email-composer
+npx cap sync
 
