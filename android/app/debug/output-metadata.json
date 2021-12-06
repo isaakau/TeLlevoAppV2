@@ -5,14 +5,14 @@
     "kind": "Directory"
   },
   "applicationId": "cl.duoc.tellevoapp",
-  "variantName": "release",
+  "variantName": "debug",
   "elements": [
     {
       "type": "SINGLE",
       "filters": [],
       "versionCode": 2,
       "versionName": "1.1",
-      "outputFile": "app-release.apk"
+      "outputFile": "app-debug.apk"
     }
   ]
 }
