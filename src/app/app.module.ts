@@ -11,6 +11,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { IonicStorageModule } from '@ionic/storage-angular';
 import { AuthGuardService } from './services/auth-guard.service';
 
+// import { EmailComposer } from '@ionic-native/email-composer';
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -20,7 +22,9 @@ import { AuthGuardService } from './services/auth-guard.service';
             HttpClientModule, 
             IonicStorageModule.forRoot(),
                       ],
-  providers: [AuthGuardService, { provide: RouteReuseStrategy, useClass: IonicRouteStrategy, }],
+  providers: [AuthGuardService, { provide: RouteReuseStrategy, useClass: IonicRouteStrategy, }, 
+    // EmailComposer
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

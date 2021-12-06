@@ -3,6 +3,7 @@ import { AlertController, ToastController } from '@ionic/angular';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { StorageService } from 'src/app/services/bd.service';
 import { Router } from '@angular/router';
+// import { EmailComposer } from '@ionic-native/email-composer';
 
 @Component({
   selector: 'app-login',
@@ -32,6 +33,7 @@ export class LoginPage implements OnInit {
               private api: UsuarioService,
               private storage: StorageService,
               private router: Router,
+              // private email: EmailComposer,
               ) { }
 
   async ngOnInit() {
@@ -201,5 +203,13 @@ export class LoginPage implements OnInit {
       this.router.navigate(['/home'])
     }
   }
+
+  // sendMail(){
+  //   let options = {
+  //     to: ['jaime.siques@gmail.com'],
+  //     subject: 'test',
+  //     body: 'asjdfkhadjhsdjassdaasdjj'
+  //   }
+  // }
 
 }
