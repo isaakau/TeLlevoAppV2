@@ -16,7 +16,7 @@
     </ion-card>
     <!--PASAJERO-->
     <!--lo que ve un pasajero cuando no tiene viaje asignado-->
-    <ion-card *ngIf="role=='V' && trip=='N'">
+    <ion-card *ngIf="role=='V'">
         <ion-card-content>
             <div>
                 <p class="font-monR">Viajes disponibles</p>
@@ -34,17 +34,9 @@
         </ion-card-footer>
     </ion-card>
 
-    <!--Lo que ve el pasajero después de inscribirse en un viaje-->
-    <ion-card *ngIf="role=='C' && trip=='Y'">
-        <div>
-            <p class="fonr-monR">Tu viaje</p>
-            <p>{{actualtrip}}</p>
-        </div>
-    </ion-card>
-
     <!--CONDUCTOR-->
     <!--lo que ve un conductor cuando no tiene viaje asignado-->
-    <ion-card *ngIf="role=='C' && trip=='N'">
+    <ion-card *ngIf="role=='C'">
         <div>
             <p class="font-monR">Crear un viaje</p>
             <ion-item>
@@ -64,13 +56,6 @@
                 <ion-input type="number" inputmode="numeric" [(ngModel)]="Trip.cost"></ion-input>
             </ion-item>
             <ion-button class="font-monR ion-text-center" color="secondary" style="margin-bottom: 1em;" (click)=createViaje()>Crear</ion-button>
-        </div>
-    </ion-card>
-    <!--lo que ve el conductor después de crear un viaje-->
-    <ion-card *ngIf="role=='C' && trip=='Y'">
-        <div>
-            <p class="fonr-monR">Tu viaje</p>
-            <p>{{actualtrip}}</p>
         </div>
     </ion-card>
 

@@ -19,7 +19,6 @@ export class LoginPage implements OnInit {
     fullname: '',
     phone: '',
     email: '',
-    isActive: '',
     role: ''
   }
 
@@ -131,7 +130,6 @@ export class LoginPage implements OnInit {
     this.api.getUsuarios().subscribe(
       (dato)=>{
         this.usuarios = dato;
-        console.log(this.usuarios);
       }
     )
   }

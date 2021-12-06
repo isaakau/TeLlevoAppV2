@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { ViajeService } from 'src/app/services/viaje.service';
 import { StorageService } from 'src/app/services/bd.service';
+import { DatePipe } from '@angular/common';
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-viajar',
@@ -13,31 +15,20 @@ export class ViajarComponent implements OnInit {
   cant: any;
   role: string;
   fullname: string;
-  trip: string;
-  tripid: any;
-
-  actualtrip = {
-    id: null,
-    destination: '',
-    hour: '',
-    date: '',
-    cost: 0,
-    driver: null
-  };
-
+  hoy: any;
+  
   Trip = {
     id: null,
     destination: '',
     hour: '',
     date: '',
-    cost: 0,
-    driver: null
+    cost: 0
   };
   
 
   constructor(private api: ViajeService,
               public alertController: AlertController,
-              private storage: StorageService,) { }
+              private storage: StorageService,) {}
 
 
 
@@ -47,9 +38,8 @@ export class ViajarComponent implements OnInit {
     this.getViajes()
     this.fullname = await this.storage.get("fullname")
     this.role = await this.storage.get('role')
-    this.trip = await this.storage.get('trip')
-    this.tripid = await this.storage.get('tripid')
-    console.log(this.fullname,"rol:", this.role);
+    this.hoy = formatDate(new Date(), 'yyyy-MM-dd','en')
+    console.log(this.hoy);
     
   }
 
@@ -72,6 +62,10 @@ export class ViajarComponent implements OnInit {
       this.presentAlert('El valor del viaje no puede superar los $2000 pesos por persona');
       return;
     }
+    if(this.Trip.date < this.hoy) {
+      this.presentAlert('La fecha del viaje no puede ser anterior al día de hoy');
+      return;
+    }
     if (
       this.Trip.destination !== '' &&
       this.Trip.hour !== '' &&
@@ -79,12 +73,14 @@ export class ViajarComponent implements OnInit {
       this.Trip.cost !== 0
     ) {
       this.Trip.id = this.cant + 1;
-      this.Trip.driver = this.storage.get('username');
       this.api.createViaje(this.Trip).subscribe(
         () => {
-          this.tripid = this.Trip.id;
-          this.obtenerViajeActual()
+          this.Trip.destination="";
+          this.Trip.hour="";
+          this.Trip.date="";
+          this.Trip.cost=null;
           this.presentAlert('Viaje agendado');
+          location.reload;
           // this.getViajes();
 
         },
@@ -99,25 +95,11 @@ export class ViajarComponent implements OnInit {
 
   async presentAlert(titulo: string) {
     const alert = await this.alertController.create({
-      cssClass: '',
+      cssClass: 'font-monR',
       header: titulo,
       buttons: ['OK'],
     });
     await alert.present();
   }
 
-  // inscribirViaje() {
-  //   this.obtenerViajeActual()
-
-  // }
-
-  obtenerViajeActual() {
-    this.tripid=this.storage.get('tripid')
-    this.api.getViaje(this.tripid).subscribe(
-      (dato)=>{
-        this.actualtrip = dato;
-            }, (error)=>{
-        console.log(error);
-      });
-  }
 }
