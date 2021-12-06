@@ -14,8 +14,8 @@ export class LoginPage implements OnInit {
   //se declara la estructura de usuario
   usuario = {
     id: null,
-    user: 'ja.aravena',
-    password: 'ja123',
+    user: '',
+    password: '',
     fullname: '',
     phone: '',
     email: '',
@@ -38,17 +38,20 @@ export class LoginPage implements OnInit {
     this.getUsuarios();
     //este if evalua si al entrar al login hay datos en el local storage
     //de haber datos, los va a borrar
-    if(await this.storage.get("username")!== ""){
-      this.storage.clear();
-    }
+    // if(await this.storage.get("username")!== ""){
+    //   this.storage.clear();
+    // }
   }
 
-  async ionViewWillEnter() {
+  ionViewWillEnter() {
     this.getUsuarios();
     this.usuario.user="";
     this.usuario.password="";
   }
 
+  ionViewDidEnter() {
+    this.isLogged();
+  }
 
   //aquí se crea el componente Alert que se utilizará para recuperar la contraseña, consiste en una ventana emergente que se superpone al login
   async presentAlert() {
@@ -189,6 +192,13 @@ export class LoginPage implements OnInit {
         position: 'middle'
       }) .then(res => res.present())
 
+    }
+  }
+
+  async isLogged() {
+    if(await this.storage.get('username')!== null) {
+      console.log(await this.storage.get('username'));
+      this.router.navigate(['/home'])
     }
   }
 

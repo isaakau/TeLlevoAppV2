@@ -39,7 +39,6 @@ export class ViajarComponent{
     this.fullname = await this.storage.get("fullname")
     this.role = await this.storage.get('role')
     this.hoy = formatDate(new Date(), 'yyyy-MM-dd','en')
-    console.log(this.hoy);
     
   }
 
