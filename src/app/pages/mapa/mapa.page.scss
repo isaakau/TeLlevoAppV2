@@ -1,10 +1,9 @@
-#map {
-    height: 90%;
-    width: 100%;
+.mainContainer {
+  display: flex;
+  justify-content: center;
 }
 
-.btn {
-  display: flex;
-  position: absolute;
-  z-index: 10;
+#map {
+  height: 70%;
+  flex: 1;
 }
