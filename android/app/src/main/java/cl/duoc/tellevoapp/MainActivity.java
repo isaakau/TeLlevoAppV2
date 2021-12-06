@@ -1,4 +1,4 @@
-package io.ionic.starter;
+package cl.duoc.tellevoapp;
 import android.os.Bundle;
 
 import com.hemangkumar.capacitorgooglemaps.CapacitorGoogleMaps;
