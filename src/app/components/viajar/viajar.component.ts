@@ -16,13 +16,16 @@ export class ViajarComponent{
   role: string;
   fullname: string;
   hoy: any;
+  emailstring: any;
+  emaildelusuario: any;
   
   Trip = {
     id: null,
     destination: '',
     hour: '',
     date: '',
-    cost: 0
+    cost: 0,
+    driver: ''
   };
 
   constructor(private api: ViajeService,
@@ -39,7 +42,7 @@ export class ViajarComponent{
     this.fullname = await this.storage.get("fullname")
     this.role = await this.storage.get('role')
     this.hoy = formatDate(new Date(), 'yyyy-MM-dd','en')
-    
+    this.emaildelusuario = await this.storage.get('email')
   }
 
   getViajes(){
@@ -52,7 +55,7 @@ export class ViajarComponent{
       });
   }
 
-  createViaje() {
+  async createViaje() {
     if (this.Trip.hour === undefined) {
       this.presentAlert('Seleccione una hora');
       return;
@@ -72,9 +75,9 @@ export class ViajarComponent{
       this.Trip.cost !== 0
     ) {
       this.Trip.id = this.cant + 1;
+      this.Trip.driver = await this.storage.get('username');
       this.api.createViaje(this.Trip).subscribe(
         () => {
-          this.Trip.destination="";
           this.Trip.hour="";
           this.Trip.date="";
           this.Trip.cost=null;
@@ -105,5 +108,6 @@ export class ViajarComponent{
   irMapa() {
     this.router.navigate(['/mapa'])
   }
+
 
 }
