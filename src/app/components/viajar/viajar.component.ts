@@ -1,16 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { ViajeService } from 'src/app/services/viaje.service';
 import { StorageService } from 'src/app/services/bd.service';
-import { DatePipe } from '@angular/common';
 import { formatDate } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-viajar',
   templateUrl: './viajar.component.html',
   styleUrls: ['./viajar.component.scss'],
 })
-export class ViajarComponent implements OnInit {
+export class ViajarComponent{
   Trips:any;
   cant: any;
   role: string;
@@ -24,15 +24,15 @@ export class ViajarComponent implements OnInit {
     date: '',
     cost: 0
   };
-  
 
   constructor(private api: ViajeService,
               public alertController: AlertController,
-              private storage: StorageService,) {}
+              private storage: StorageService,
+              private router: Router) {}
 
 
-
-  ngOnInit() {}
+  ngOnInit() {
+  }
 
   async ionViewWillEnter(){
     this.getViajes()
@@ -100,6 +100,11 @@ export class ViajarComponent implements OnInit {
       buttons: ['OK'],
     });
     await alert.present();
+  }
+
+
+  irMapa() {
+    this.router.navigate(['/mapa'])
   }
 
 }

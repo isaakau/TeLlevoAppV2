@@ -1,0 +1,23 @@
+<ion-content class="mainContainer" mode="md">
+  <!-- mapa -->
+  <div id="map" #map></div>
+  <div style="margin-left: 2em; margin-right: 2em; margin-top: 1em;">
+    <p>La distancia hasta DuocUC Viña del Mar es de: {{dist}} mts</p>
+    <ion-button
+      class="font-monR ion-text-center btn"
+      color="secondary"
+      style="margin-bottom: 1em"
+      expand="full"
+      (click)="checkCoordinates()"
+      >Calcular distancia</ion-button
+    >
+    <ion-button
+      class="font-monR ion-text-center btn"
+      color="secondary"
+      style="margin-bottom: 1em"
+      expand="full"
+      (click)="volver()"
+      >Volver</ion-button
+    >
+  </div>
+</ion-content>
