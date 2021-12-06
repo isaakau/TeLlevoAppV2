@@ -16,13 +16,15 @@ export class ViajarComponent{
   role: string;
   fullname: string;
   hoy: any;
+  emailstring: any;
   
   Trip = {
     id: null,
     destination: '',
     hour: '',
     date: '',
-    cost: 0
+    cost: 0,
+    driver: ''
   };
 
   constructor(private api: ViajeService,
@@ -52,7 +54,7 @@ export class ViajarComponent{
       });
   }
 
-  createViaje() {
+  async createViaje() {
     if (this.Trip.hour === undefined) {
       this.presentAlert('Seleccione una hora');
       return;
@@ -72,8 +74,10 @@ export class ViajarComponent{
       this.Trip.cost !== 0
     ) {
       this.Trip.id = this.cant + 1;
+      this.Trip.driver = await this.storage.get('username');
       this.api.createViaje(this.Trip).subscribe(
         () => {
+          this.emailstring='mailto:'+this.Trip.driver+'@duocuc.cl?subject=Se%20ha%20creado%20un%20viaje&body=Se%20ha%20creado%20un%20viaje%20para%20el%20día%20'+this.Trip.date+'%20a%20las%20'+this.Trip.hour+'%20con%20destino%20a%20'+this.Trip.destination+'.%20Gracias%20por%20usar%20TeLlevoApp%20(❁´◡`❁)'
           this.Trip.destination="";
           this.Trip.hour="";
           this.Trip.date="";
@@ -104,6 +108,10 @@ export class ViajarComponent{
 
   irMapa() {
     this.router.navigate(['/mapa'])
+  }
+
+  async comenzarViaje() {
+    //this.emailstring='mailto:'+await this.storage.get('username')+'?subject=Se ha unido a un viaje&body=Se ha unido al viaje de '+this.Trip.date+' a las '+this.Trip.hour+' con destino a '+this.Trip.destination+'. Gracias por usar TeLlevoApp (❁´◡`❁)'
   }
 
 }

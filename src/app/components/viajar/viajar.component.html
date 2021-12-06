@@ -62,12 +62,12 @@
                 <ion-button class="font-monR ion-text-center" color="secondary" style="margin-bottom: 1em; margin-left: 2em; margin-right: 2em;" expand="full" (click)="irMapa()">Ver ubicación actual</ion-button>
             </div>
             <div class="ion-text-center">
-                <ion-button class="font-monR ion-text-center" color="secondary" style="margin-bottom: 1em; margin-left: 2em; margin-right: 2em;" expand="full" (click)=createViaje()>Crear</ion-button>
+                <ion-button class="font-monR ion-text-center" color="secondary" style="margin-bottom: 1em; margin-left: 2em; margin-right: 2em;" expand="full" (click)=createViaje() href={{emailstring}}>Crear</ion-button>
             </div>
         </div>
 
-            <!-- mapa -->
-            <div id="map" #map></div> 
+        <!-- mapa -->
+        <div id="map" #map></div>
 
     </ion-card>
 
