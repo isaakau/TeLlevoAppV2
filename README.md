@@ -9,19 +9,21 @@ npm install @ionic/storage-angular
 npm install geolib
 ***
 npm install @capacitor/android
+<!-- para crear carpeta android -->
 npx cap add android
+<!-- abre el proyecto en android studio -->
 npx cap open android
-Para enviar el email
-npm install nodemailer
 ***
 ionic build --> para cambios
 npx cap copy 
 ***
+<!-- instalar geolocatio -->
 npm install @capacitor/geolocation
 npx cap sync
 ***
 ionic capacitor run android --livereload
 ***
+<!-- instalar googlemaps nativo con capacitor -->
 npm i @capacitor-community/capacitor-googlemaps-native
 ***
 <!-- deployment en telefono -->
