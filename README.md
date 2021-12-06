@@ -33,3 +33,6 @@ ionic cap run android --livereload --external --source-map
 npm install capacitor-email-composer
 npx cap sync
 
+<!-- para testing -->
+npm install -g @angular/cli
+ng test
